@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Форми</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        h1, h2 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        form {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+            transition: transform 0.3s ease;
+        }
+        
+        form:hover {
+            transform: translateY(-5px);
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="number"],
+        input[type="password"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            transition: border 0.3s;
+        }
+        
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #3498db;
+            outline: none;
+            box-shadow: 0 0 8px rgba(52, 152, 219, 0.3);
+        }
+        
+        .radio-group,
+        .checkbox-group {
+            margin-bottom: 20px;
+        }
+        
+        .radio-group label,
+        .checkbox-group label {
+            display: inline-block;
+            margin-right: 15px;
+            font-weight: normal;
+            cursor: pointer;
+        }
+        
+        input[type="radio"],
+        input[type="checkbox"] {
+            margin-right: 5px;
+            transform: scale(1.2);
+        }
+        
+        button,
+        input[type="submit"],
+        input[type="reset"] {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-right: 10px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        
+        button:hover,
+        input[type="submit"]:hover,
+        input[type="reset"]:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+        }
+        
+        input[type="reset"] {
+            background-color: #95a5a6;
+        }
+        
+        input[type="reset"]:hover {
+            background-color: #7f8c8d;
+        }
+        
+        .result {
+            font-weight: bold;
+            color: #27ae60;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: rgba(39, 174, 96, 0.1);
+            border-radius: 4px;
+            border-left: 4px solid #27ae60;
+        }
+        
+        .error {
+            color: #e74c3c;
+            font-size: 0.9em;
+            margin-top: -15px;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        input:invalid {
+            border-color: #e74c3c;
+        }
+        
+        input:valid {
+            border-color: #2ecc71;
+        }
+        
+        /* Анімації */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        form {
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        /* Адаптивність */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            form {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Форми</h1>
+    
+    <form id="registrationForm">
+        <h2>Реєстрація</h2>
+        
+        <div>
+            <label for="regUsername">Ім'я користувача:</label>
+            <input type="text" id="regUsername" name="username" required 
+                   minlength="3" maxlength="20" pattern="[a-zA-Z0-9]+">
+            <span id="usernameError" class="error"></span>
+        </div>
+        
+        <div>
+            <label for="regEmail">Email:</label>
+            <input type="email" id="regEmail" name="email" required>
+            <span id="emailError" class="error"></span>
+        </div>
+        
+        <div>
+            <label for="regPassword">Пароль:</label>
+            <input type="password" id="regPassword" name="password" required 
+                   minlength="6" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}">
+            <small>Пароль повинен містити принаймні одну цифру, одну велику та одну малу літеру</small>
+            <span id="passwordError" class="error"></span>
+        </div>
+        
+        <div>
+            <label for="regConfirmPassword">Підтвердіть пароль:</label>
+            <input type="password" id="regConfirmPassword" name="confirmPassword" required>
+            <span id="confirmPasswordError" class="error"></span>
+        </div>
+        
+        <div class="radio-group">
+            <label>Стать:</label>
+            <input type="radio" id="regMale" name="gender" value="male">
+            <label for="regMale">Чоловіча</label>
+            <input type="radio" id="regFemale" name="gender" value="female">
+            <label for="regFemale">Жіноча</label>
+        </div>
+        
+        <button type="submit">Зареєструватися</button>
+        <button type="reset">Очистити</button>
+    </form>
+    
+    <form id="feedbackForm">
+        <h2>Зворотній зв'язок</h2>
+        
+        <div>
+            <label for="fbName">Ваше ім'я:</label>
+            <input type="text" id="fbName" name="name" required>
+        </div>
+        
+        <div>
+            <label for="fbEmail">Ваш Email:</label>
+            <input type="email" id="fbEmail" name="email" required>
+        </div>
+        
+        <div>
+            <label for="fbTopic">Тема:</label>
+            <select id="fbTopic" name="topic">
+                <option value="question">Запитання</option>
+                <option value="suggestion">Пропозиція</option>
+                <option value="complaint">Скарга</option>
+            </select>
+        </div>
+        
+        <div>
+            <label for="fbMessage">Повідомлення:</label>
+            <textarea id="fbMessage" name="message" rows="5" required></textarea>
+        </div>
+        
+        <div class="checkbox-group">
+            <input type="checkbox" id="fbSubscribe" name="subscribe" checked>
+            <label for="fbSubscribe">Підписатися на розсилку</label>
+        </div>
+        
+        <button type="submit">Надіслати</button>
+    </form>
+    
+    <form id="calculatorForm">
+        <h2>Калькулятор вартості</h2>
+        
+        <div>
+            <label for="calcPrice">Ціна за одиницю товару (грн):</label>
+            <input type="number" id="calcPrice" name="price" min="0" step="0.01" required>
+        </div>
+        
+        <div>
+            <label for="calcQuantity">Кількість товару:</label>
+            <input type="number" id="calcQuantity" name="quantity" min="1" required>
+        </div>
+        
+        <div>
+            <label for="calcDiscount">Знижка (%):</label>
+            <input type="number" id="calcDiscount" name="discount" min="0" max="100" value="0">
+        </div>
+        
+        <button type="button" onclick="calculateTotal()">Розрахувати</button>
+        
+        <div id="calcResult" class="result" style="display: none;">
+            <h3>Результати розрахунку:</h3>
+            <p>Загальна вартість без знижки: <span id="totalWithoutDiscount">0.00</span> грн</p>
+            <p>Сума знижки: <span id="discountAmount">0.00</span> грн</p>
+            <p>До сплати: <span id="totalWithDiscount">0.00</span> грн</p>
+        </div>
+    </form>
+    
+    <script>
+        function calculateTotal() {
+            const price = parseFloat(document.getElementById('calcPrice').value);
+            const quantity = parseInt(document.getElementById('calcQuantity').value);
+            const discount = parseFloat(document.getElementById('calcDiscount').value);
+
+            if (isNaN(price) || isNaN(quantity) || isNaN(discount)) {
+                alert('Будь ласка, введіть коректні числа');
+                return;
+            }
+            
+            if (price <= 0 || quantity <= 0) {
+                alert('Ціна та кількість повинні бути більше 0');
+                return;
+            }
+            
+            if (discount < 0 || discount > 100) {
+                alert('Знижка повинна бути від 0 до 100%');
+                return;
+            }
+            
+            const totalWithoutDiscount = price * quantity;
+            const discountAmount = totalWithoutDiscount * discount / 100;
+            const totalWithDiscount = totalWithoutDiscount - discountAmount;
+
+            document.getElementById('totalWithoutDiscount').textContent = totalWithoutDiscount.toFixed(2);
+            document.getElementById('discountAmount').textContent = discountAmount.toFixed(2);
+            document.getElementById('totalWithDiscount').textContent = totalWithDiscount.toFixed(2);
+            
+            document.getElementById('calcResult').style.display = 'block';
+        }
+        
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const password = document.getElementById('regPassword').value;
+            const confirmPassword = document.getElementById('regConfirmPassword').value;
+            
+            if (password !== confirmPassword) {
+                document.getElementById('confirmPasswordError').textContent = 'Паролі не співпадають';
+                return;
+            }
+            
+            alert('Форма успішно відправлена!');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
